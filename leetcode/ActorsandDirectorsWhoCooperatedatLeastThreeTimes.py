@@ -40,9 +40,23 @@ if __name__ == '__main__':
     #
     # actor_director_df.show()
     actor_director_df = actor_director_df.groupBy("actor_id","director_id").count()
-    actor_director_df = actor_director_df.select("actor_id","director_id").where(actor_director_df["count"] >= 3)
-    #where(count(concat("actor_id","director_id")) >= 3)
-    #select("actor_id", "director_id")
+
+    # +--------+-----------+-----+
+    # | actor_id | director_id | count |
+    # +--------+-----------+-----+
+    # | 1 | 2 | 2 |
+    # | 1 | 1 | 3 |
+    # | 2 | 1 | 2 |
+    # +--------+-----------+-----+
+
+    actor_director_df = actor_director_df.where(actor_director_df["count"] >= 3).select("actor_id","director_id")
+
+    # +--------+-----------+
+    # | actor_id | director_id |
+    # +--------+-----------+
+    # | 1 | 1 |
+    # +--------+-----------+
+
     actor_director_df.show()
 
 

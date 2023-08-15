@@ -47,10 +47,10 @@ if __name__ == '__main__':
     print("windowSpec ---> ",dir(windowSpec))
 
     # Add a new column "rank_row" that represents the rank of each row within the partition
-    activity_df = activity_df.withColumn("rank_row",rank().over(windowSpec))
+    intermediate_result_df = activity_df.withColumn("rank_row",rank().over(windowSpec))
 
     # Filter the DataFrame to show only rows where rank_row is equal to 1
-    result_df = activity_df.filter(activity_df.rank_row == 1)
+    result_df = intermediate_result_df.filter(intermediate_result_df.rank_row == 1)
 
     # Select only the "player_id" and "device_id" columns
     result_df = result_df.select("player_id", "device_id")
