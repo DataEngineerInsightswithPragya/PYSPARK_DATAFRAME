@@ -1,0 +1,5 @@
+order_id,order_date,order_customer_id,order_state
+1,"2013-07-25",1159,"closed"
+2,"2014-07-25",256,"pending_payment"
+3,"2013-07-25",1159,"complete"
+4,"2019-07-25",1159,"closed"
